@@ -86,12 +86,12 @@ ry/create-scrum-boar~).
 
 #+BEGIN_SRC org
 #+BEGIN: scrum-board
-|--------------+------------+-----------+----------|
-| Queue        | Working On | On Hold   | Finished |
-|--------------+------------+-----------+----------|
-|              |            |           | [[Buy Food]] |
-| [[Serve Dinner]] |            |           |          |
-|              |            | [[Pay Bills]] |          |
+|------------------+------------+---------------+--------------|
+| Queue            | Working On | On Hold       | Finished     |
+|------------------+------------+---------------+--------------|
+|                  |            |               | [[Buy Food]] |
+| [[Serve Dinner]] |            |               |              |
+|                  |            | [[Pay Bills]] |              |
 #+END:
 #+END_SRC
 
