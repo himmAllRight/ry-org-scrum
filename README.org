@@ -91,7 +91,7 @@ will not be used by ry-org-scrum.
 After creating an org list like the one described in the [[Use][previous
 section]], a SCRUM table can be generated at the marker by calling
 ~ry/create-scrum-board~ anywhere in the buffer (~M-x
-ry/create-scrum-boar~).
+ry/create-scrum-board~).
 
 #+BEGIN_SRC org
 #+BEGIN: scrum-board
