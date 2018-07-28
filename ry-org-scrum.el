@@ -1,9 +1,10 @@
-;;; ry-org-scrum.el --- a simple org scrum package             -*- lexical-binding: t; -*-
+;;; ry-org-scrum.el --- a simple org scrum package   -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018  Ryan Himmelwright
 
 ;; Author: Ryan Himmelwright <ryan.himmelwright@gmail.com>
 ;; Keywords: lisp org scrum
+;; URL: https://github.com/himmAllRight/ry-org-scrum
 ;; Version: 0.0.1
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -30,12 +31,12 @@
 
 ;; Writting some org functions to help me manage my stuff easier.
 (defclass ry/task ()
-  "Class for objects to hold info about each task."
   ((level    :initarg :level    :initform 0)
    (status   :initarg :status   :initform nil)
    (heading  :initarg :heading  :initform "")
    (tags     :initarg :tags     :initform nil)
-   (time     :initarg :time     :initform 0)))
+   (time     :initarg :time     :initform 0))
+  (:documentation "Class for objects to hold info about each task."))
 
 
 ;; An alist to manage the status names and their respective columns in
@@ -116,3 +117,4 @@ status marked."
     (reverse output-items)))
 
 ;;; ry-org-scrum.el ends here
+q
