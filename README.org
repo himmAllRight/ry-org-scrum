@@ -71,7 +71,7 @@ will not be used by ry-org-scrum.
 #+BEGIN_SRC org
 ** Monday
 *** Finished Buy Food
-*** In Progress Cook Dinner
+*** Working On Cook Dinner
 *** Queue Serve Dinner
 *** On Hold Pay Bills
 *** Feed Dog
@@ -86,12 +86,13 @@ ry/create-scrum-boar~).
 
 #+BEGIN_SRC org
 #+BEGIN: scrum-board
-|------------------+------------+---------------+--------------|
-| Queue            | Working On | On Hold       | Finished     |
-|------------------+------------+---------------+--------------|
-|                  |            |               | [[Buy Food]] |
-| [[Serve Dinner]] |            |               |              |
-|                  |            | [[Pay Bills]] |              |
+|------------------+-----------------+---------------+--------------|
+| Queue            | Working On      | On Hold       | Finished     |
+|------------------+-----------------+---------------+--------------|
+|                  |                 |               | [[Buy Food]] |
+|                  | [[Cook Dinner]] |               |              |
+| [[Serve Dinner]] |                 |               |              |
+|                  |                 | [[Pay Bills]] |              |
 #+END:
 #+END_SRC
 
