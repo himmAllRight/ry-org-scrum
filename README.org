@@ -2,13 +2,105 @@
 Emacs package to manage personal scrum planning in org mode.
 
 ** Install
+This is still just a small single-file package, and isn't in any repo,
+but is easy enough to install. Just clone the git repo:
+
+#+BEGIN_SRC bash
+git clone https://github.com/himmAllRight/ry-org-scrum.git
+#+END_SRC
+
+and then install the package file in emacs:
+
+#+BEGIN_SRC emacs
+M-x package-install-file
+repo-loc/ry-org-scrum/ry-org-scrum.el
+#+END_SRC
+
+That should be it.
 
 ** Setup
+The scrum boards are created by parsing the current buffer for org
+task items that are tagged with certain ~TODO~ keywords. By default,
+these keywords are ~Queue~, ~Working On~, ~On Hold~, and ~Finished~. 
 
-** Using it
+It is recommended that these keywords be added to the user's
+~org-todo-keywords~ variable. For example, it can be added as a second
+~TODO~ sequence by appending the following code to one's ~.emacs~ file:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-todo-keywords '((sequence "TODO" "In Progress" "|" "Waiting" "DONE" "Completed")
+			      (sequence "Queue" "Working On" "On Hold" "|" "Finished")))
+#+END_SRC
+
+Afterwards, to switch a ~TODO~ item to use the second sequence, hit
+~C-u C-u C-c C-t~. From there, the SCRUM stages can be toggled through
+using whatever keybinding ~org-todo~ is normally bound to (usually
+~C-c C-t~).
+
+*** Changing the SCRUM Keywords
+
+The scrum todo keywords and their respective locations in the scrum
+table are defined with the ~*colums-alist*~ variable. The
+~*columnns-alist*~ variable can be edited to change the ~ry-org-scrum~
+todo keywords, or order of the columns in the scrum chart. For
+example, the default value is set to following:
+
+#+BEGIN_SRC emacs-lisp
+;; An alist to manage the status names and their respective columns in
+;; the scrum table.
+(setf *columns-alist* '(("Queue"    "\n| %s | | | |")
+			("Working On" "\n| | %s | | |")
+			("On Hold"    "\n| | | %s | |")
+			("Finished"   "\n| | | | %s |")))
+#+END_SRC
+
+** Use
+To use ry-org-scrum, start by creating an ~org~ file and then
+switching to ~org-mode~ with ~M-x org-mode~.
 
 *** Creating A Task List
+Once in the org file, create a normal org ~todo~ list, using the
+keywords described above. It doesn't matter what level heading they
+are, as the scrum table will just look for the tags when generating
+the table. If item's aren't tagged, they won't be included. For
+example, in the org list below, "Serve Dinner" will be in the queue,
+"Cook Dinner" is marked as in progress, "Pay Bills" is waiting, and
+"Buy Food" is completed. However, "Feed Dog" isn't tagged and thus
+will not be used by ry-org-scrum. 
+
+#+BEGIN_SRC org
+** Monday
+*** Finished Buy Food
+*** In Progress Cook Dinner
+*** Queue Serve Dinner
+*** On Hold Pay Bills
+*** Feed Dog
+#+END_SRC
 
 *** Generating SCRUM Tables
 
+After creating an org list like the one described in the [[Use][previous
+section]], a SCRUM table can be generated at the marker by calling
+~ry/create-scrum-board~ anywhere in the buffer (~M-x
+ry/create-scrum-boar~).
+
+#+BEGIN_SRC org
+#+BEGIN: scrum-board
+|--------------+------------+-----------+----------|
+| Queue        | Working On | On Hold   | Finished |
+|--------------+------------+-----------+----------|
+|              |            |           | [[Buy Food]] |
+| [[Serve Dinner]] |            |           |          |
+|              |            | [[Pay Bills]] |          |
+#+END:
+#+END_SRC
+
+If the list is changed at all, the board can be updated by moving the
+marker to either "~#+BEGIN: scrum-board~" or "~#+END:~" of the board,
+and hitting ~C-c C-c~.
+
 ** Future Development
+
+I haven't decided what to add next, but when I have a plan of which
+features to add, I'll make a checklist here. Feel free to request
+features using the Github issues tracker.
