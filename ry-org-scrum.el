@@ -117,4 +117,3 @@ status marked."
     (reverse output-items)))
 
 ;;; ry-org-scrum.el ends here
-q

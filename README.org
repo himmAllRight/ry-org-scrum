@@ -16,6 +16,15 @@ M-x package-install-file
 repo-loc/ry-org-scrum/ry-org-scrum.el
 #+END_SRC
 
+Afterwards, because to load the package. It is reccomended to either
+require it in ~.emacs~, or load it with ~use-package~:
+
+#+BEGIN_SRC emacs-lisp
+  (require 'ry-org-scrum)
+  (use-package 'ry-org-scrum
+    :ensure t)
+#+END_SRC
+
 That should be it.
 
 ** Setup
