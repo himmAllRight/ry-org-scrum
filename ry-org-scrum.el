@@ -50,12 +50,12 @@
   "Create a new scrum board, with BEGIN and END tags."
   (interactive)
   (insert (format "#+BEGIN: scrum-board\n"))
-  (ryan/generate-scrum-board)
+  (ry/generate-scrum-board)
   (insert (format "\n#+END:")))
 
 (defun org-dblock-write:scrum-board (params)
   "Add scrum-board as an org-dblock-write"
-  (ryan/generate-scrum-board))
+  (ry/generate-scrum-board))
 
 (defun ry/generate-scrum-board ()
   "Generates a scrum board from the current buffer."
