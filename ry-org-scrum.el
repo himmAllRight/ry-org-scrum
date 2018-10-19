@@ -41,10 +41,11 @@
 
 ;; An alist to manage the status names and their respective columns in
 ;; the scrum table.
-(setf *columns-alist* '(("Queue"    "\n| %s | | | |")
-			("Working On" "\n| | %s | | |")
-			("On Hold"    "\n| | | %s | |")
-			("Finished"   "\n| | | | %s |")))
+(setf *columns-alist* '(("Queue"      "\n| %s | | | | |")
+			("Working On" "\n| | %s | | | |")
+			("On Hold"    "\n| | | %s | | |")
+			("Finished"   "\n| | | | %s | |")
+			("Removed"    "\n| | | | | %s |")))
 
 (defun ry/create-scrum-board ()
   "Create a new scrum board, with BEGIN and END tags."
