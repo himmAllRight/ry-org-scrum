@@ -38,7 +38,7 @@ It is recommended that these keywords be added to the user's
 
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords '((sequence "TODO" "In Progress" "|" "Waiting" "DONE" "Completed")
-			      (sequence "Queue" "Working On" "On Hold" "|" "Finished")))
+                          (sequence "Queue" "Working On" "On Hold" "|" "Finished" "Removed")))
 #+END_SRC
 
 Afterwards, to switch a ~TODO~ item to use the second sequence, hit
@@ -56,11 +56,11 @@ example, the default value is set to following:
 
 #+BEGIN_SRC emacs-lisp
 ;; An alist to manage the status names and their respective columns in
-;; the scrum table.
-(setf *columns-alist* '(("Queue"    "\n| %s | | | |")
-			("Working On" "\n| | %s | | |")
-			("On Hold"    "\n| | | %s | |")
-			("Finished"   "\n| | | | %s |")))
+(setf *columns-alist* '(("Queue"      "\n| %s | | | | |")
+			("Working On" "\n| | %s | | | |")
+			("On Hold"    "\n| | | %s | | |")
+			("Finished"   "\n| | | | %s | |")
+			("Removed"    "\n| | | | | %s |")))
 #+END_SRC
 
 ** Use
@@ -83,6 +83,7 @@ will not be used by ry-org-scrum.
 *** Working On Cook Dinner
 *** Queue Serve Dinner
 *** On Hold Pay Bills
+*** Removed Meetup
 *** Feed Dog
 #+END_SRC
 
@@ -95,13 +96,14 @@ ry/create-scrum-board~).
 
 #+BEGIN_SRC org
 #+BEGIN: scrum-board
-|------------------+-----------------+---------------+--------------|
-| Queue            | Working On      | On Hold       | Finished     |
-|------------------+-----------------+---------------+--------------|
-|                  |                 |               | [[Buy Food]] |
-|                  | [[Cook Dinner]] |               |              |
-| [[Serve Dinner]] |                 |               |              |
-|                  |                 | [[Pay Bills]] |              |
+|------------------+-----------------+---------------+--------------+------------|
+| Queue            | Working On      | On Hold       | Finished     | Removed    |
+|------------------+-----------------+---------------+--------------+------------|
+|                  |                 |               | [[Buy Food]] |            |
+|                  | [[Cook Dinner]] |               |              |            |
+| [[Serve Dinner]] |                 |               |              |            |
+|                  |                 | [[Pay Bills]] |              |            |
+|                  |                 |               |              | [[Meetup]] |
 #+END:
 #+END_SRC
 
