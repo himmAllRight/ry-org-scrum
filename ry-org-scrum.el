@@ -89,7 +89,31 @@ using *coumns-alist*."
     (when var
       (cadr var))))
 
+(org-map-entries (lambda () (print (org-heading-components))))
 
+(defun ry/grab-notes ()
+  (interactive)
+  (let (output-items)
+    (org-diary
+     (lambda ()
+       (let* ((heading-data (org-heading-components))
+	      (level        (elt heading-data 0))
+	      (status       (elt heading-data 2))
+	      (heading      (elt heading-data 4))
+	      (tags         (elt heading-data 5))
+	      (time (org-element-property :TIME (org-element-at-point))))
+	 (when status
+	   (push
+	    (make-instance 'ry/task
+			   :level    level
+			   :status   status
+			   :heading  heading
+			   :tags     tags
+			   :time     (when time (string-to-number time)))
+	    output-items))))
+     nil
+     nil)
+    (reverse output-items)))
 
 (defun ry/get-tasks-with-status ()
   "Returns a list of task objects in the buffer that have a
@@ -98,7 +122,7 @@ status marked."
   (let (output-items)
     (org-map-entries
      (lambda ()
-       (let* ((heading-data (org-heading-components))w
+       (let* ((heading-data (org-heading-components))
 	      (level        (elt heading-data 0))
 	      (status       (elt heading-data 2))
 	      (heading      (elt heading-data 4))
